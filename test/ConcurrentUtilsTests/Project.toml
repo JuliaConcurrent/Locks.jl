@@ -1,0 +1,12 @@
+name = "ConcurrentUtilsTests"
+uuid = "71323e17-78a0-422b-bf72-5bc6433f3048"
+authors = ["Takafumi Arakaki <aka.tkf@gmail.com> and contributors"]
+version = "0.1.0-DEV"
+
+[deps]
+ConcurrentUtils = "3df5f688-6c4c-4767-8685-17f5ad261477"
+Random = "9a3f8284-a2c9-5f02-9a11-845980a1fd5c"
+Test = "8dfed614-e22c-5e08-85e1-65c5234f0b40"
+
+[compat]
+julia = "1.6"
