@@ -1,5 +1,3 @@
-struct IsLocked end
-
 mutable struct LockQueueNode
     @atomic state::Union{IsLocked,Task,Nothing}
     _pad::NTuple{7,Int}

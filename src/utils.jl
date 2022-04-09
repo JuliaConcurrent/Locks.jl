@@ -24,7 +24,25 @@ else
     Historic.@define Debug
     using .Debug: @record
 end
+=#
 
+const ThreadLocalCounters = if USE_THREADLOCALCOUNTERS
+    Base.require(
+        Base.PkgId(Base.UUID(0xa69d1b5e1cd74eddaa26bee352d56156), "ThreadLocalCounters"),
+    )
+else
+    nothing
+end
+
+@static if ThreadLocalCounters === nothing
+    macro tlc(_...)
+        nothing
+    end
+else
+    using .ThreadLocalCounters: @tlc
+end
+
+#=
 """
     @yield_unsafe expression
 
@@ -48,6 +66,8 @@ function spinfor(nspins)
         spinloop()
     end
 end
+
+@noinline unreachable() = error("unreachable")
 
 oneto(::Nothing) = ()
 oneto(n) = Base.OneTo(n)
@@ -73,6 +93,8 @@ _typeof(x) = typeof(x)
 _typeof(::Type{T}) where {T} = Type{T}
 
 pad7() = ntuple(_ -> 0, Val(7))
+
+struct IsLocked end
 
 function unwrap_or_else(f, result)
     if Try.iserr(result)

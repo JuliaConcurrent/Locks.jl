@@ -2,9 +2,11 @@ baremodule Locks
 
 export
     # Constructors
+    NonreentrantBackoffLock,
     NonreentrantBackoffSpinLock,
     NonreentrantCLHLock,
     NotAcquirableError,
+    ReentrantBackoffLock,
     ReentrantBackoffSpinLock,
     ReentrantCLHLock,
     TaskObliviousLock,
@@ -57,13 +59,11 @@ using ..Locks:
     release,
     try_race_acquire
 
-#=
 if isfile(joinpath(@__DIR__, "config.jl"))
     include("config.jl")
 else
     include("default-config.jl")
 end
-=#
 
 include("utils.jl")
 include("thread_local_storage.jl")
@@ -75,6 +75,8 @@ include("clh_lock.jl")
 
 end  # module Internal
 
+const ReentrantBackoffLock = Internal.ReentrantBackoffLock
+const NonreentrantBackoffLock = Internal.NonreentrantBackoffLock
 const ReentrantBackoffSpinLock = Internal.ReentrantBackoffSpinLock
 const NonreentrantBackoffSpinLock = Internal.NonreentrantBackoffSpinLock
 const ReentrantCLHLock = Internal.ReentrantCLHLock

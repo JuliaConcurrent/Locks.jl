@@ -30,7 +30,7 @@ function check_minimal_lock_interface(lock)
 end
 
 function test_minimal_lock_interface()
-    @testset "$(nameof(T))" for T in [ReentrantLock, ReentrantCLHLock, NonreentrantCLHLock]
+    @testset "$(nameof(T))" for T in [ReentrantLock, ReentrantCLHLock, NonreentrantCLHLock, ReentrantBacokffLock, NonreentrantBacokffLock]
         check_minimal_lock_interface(T())
     end
 end
@@ -59,6 +59,8 @@ function test_concurrent_mutex()
             NonreentrantCLHLock,
             ReentrantBackoffSpinLock,
             NonreentrantBackoffSpinLock,
+            ReentrantBackoffLock,
+            NonreentrantBackoffLock,
         ],
         ntasks in [Threads.nthreads(), 64 * Threads.nthreads()]
 

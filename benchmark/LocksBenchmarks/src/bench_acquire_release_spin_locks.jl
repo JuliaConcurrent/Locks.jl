@@ -58,6 +58,8 @@ function setup(;
         NonreentrantCLHLock,
         ReentrantBackoffSpinLock,
         NonreentrantBackoffSpinLock,
+        ReentrantBackoffLock,
+        NonreentrantBackoffLock,
     ],
 )
     suite = BenchmarkGroup()
