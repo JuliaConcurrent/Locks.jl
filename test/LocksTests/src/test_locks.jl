@@ -34,8 +34,8 @@ function test_minimal_lock_interface()
         ReentrantLock,
         ReentrantCLHLock,
         NonreentrantCLHLock,
-        ReentrantBacokffLock,
-        NonreentrantBacokffLock,
+        ReentrantBackoffLock,
+        NonreentrantBackoffLock,
     ]
         check_minimal_lock_interface(T())
     end
