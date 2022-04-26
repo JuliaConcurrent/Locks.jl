@@ -4,9 +4,9 @@ authors = ["Takafumi Arakaki <aka.tkf@gmail.com> and contributors"]
 version = "0.1.0-DEV"
 
 [deps]
+Documenter = "e30172f5-a6a5-5a46-863b-614d45cd2de4"
 Locks = "b2b8d39d-860c-47cc-b75e-a6e39294eaae"
 LocksBenchmarks = "c9853ddb-a9c6-4214-a076-5174e7e165c1"
-Documenter = "e30172f5-a6a5-5a46-863b-614d45cd2de4"
 Random = "9a3f8284-a2c9-5f02-9a11-845980a1fd5c"
 Test = "8dfed614-e22c-5e08-85e1-65c5234f0b40"
 

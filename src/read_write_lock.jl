@@ -23,11 +23,7 @@ function ReadWriteLock()
 end
 
 # Not very efficient but lock-free
-function Locks.try_race_acquire_read(
-    rwlock::ReadWriteLock;
-    nspins = -∞,
-    ntries = -∞,
-)
+function Locks.try_race_acquire_read(rwlock::ReadWriteLock; nspins = -∞, ntries = -∞)
     local ns::Int = 0
     local nt::Int = 0
     while true

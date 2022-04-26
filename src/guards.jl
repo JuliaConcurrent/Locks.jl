@@ -2,8 +2,7 @@ const Guard = GenericGuard{ReentrantLock}
 const ReadWriteGuard = GenericReadWriteGuard{ReadWriteLock}
 
 Locks.guardwith(data, lock) = GenericGuard(lock, data)
-Locks.guardwith(data, lock::AbstractReadWriteLock) =
-    GenericReadWriteGuard(lock, data)
+Locks.guardwith(data, lock::AbstractReadWriteLock) = GenericReadWriteGuard(lock, data)
 
 function Locks.GenericGuard{Lock}(data) where {Lock}
     lock = Lock()
@@ -21,8 +20,7 @@ function Locks.guarding(f!::F, g::GenericGuard) where {F}
     lock(criticalsection, g.lock)
 end
 
-Locks.guarding_read(f::F, g::GenericGuard) where {F} =
-    Locks.guarding(f, g)
+Locks.guarding_read(f::F, g::GenericGuard) where {F} = Locks.guarding(f, g)
 
 function Locks.guarding(f!::F, g::GenericReadWriteGuard) where {F}
     data = g.data

@@ -29,8 +29,7 @@ end
 
 Locks.lock_supports_nspins(::Type{<:Base.AbstractLock}) = false
 
-Locks.lock_supports_nspins(lock) =
-    Locks.lock_supports_nspins(typeof(lock))
+Locks.lock_supports_nspins(lock) = Locks.lock_supports_nspins(typeof(lock))
 
 need_lock_object() = error("need lock type or object")
 Locks.lock_supports_nspins(::Type{Union{}}) = need_lock_object()
