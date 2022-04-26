@@ -9,7 +9,7 @@ Try to retrieve a `value` if it is already set.  Return `Ok(value)` on success a
 
 ## Examples
 ```julia
-julia> using ConcurrentUtils
+julia> using Locks
 
 julia> p = Promise{Int}();
 

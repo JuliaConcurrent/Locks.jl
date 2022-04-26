@@ -1,10 +1,10 @@
 using Documenter
-using ConcurrentUtils
+using Locks
 
 makedocs(
-    sitename = "ConcurrentUtils",
+    sitename = "Locks",
     format = Documenter.HTML(),
-    modules = [ConcurrentUtils],
+    modules = [Locks],
     strict = [
         :autodocs_block,
         :cross_references,
@@ -24,7 +24,7 @@ makedocs(
 )
 
 deploydocs(
-    repo = "github.com/JuliaConcurrent/ConcurrentUtils.jl",
+    repo = "github.com/JuliaConcurrent/Locks.jl",
     devbranch = "main",
     push_preview = true,
     # Ref:

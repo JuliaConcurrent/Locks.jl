@@ -1,6 +1,6 @@
 module TestGuards
 
-using ConcurrentUtils
+using Locks
 using Test
 
 function check_guarding(Guard; guarding = guarding)

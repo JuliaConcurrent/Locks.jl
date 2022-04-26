@@ -2,15 +2,15 @@
 ### Base.AbstractLock adapters
 ###
 
-ConcurrentUtils.acquire(lck::Base.AbstractLock; options...) = lock(lck; options...)
-ConcurrentUtils.release(lck::Base.AbstractLock) = unlock(lck)
+Locks.acquire(lck::Base.AbstractLock; options...) = lock(lck; options...)
+Locks.release(lck::Base.AbstractLock) = unlock(lck)
 
-ConcurrentUtils.acquire(x) = Base.acquire(x)
-ConcurrentUtils.release(x) = Base.release(x)
+Locks.acquire(x) = Base.acquire(x)
+Locks.release(x) = Base.release(x)
 
-ConcurrentUtils.race_acquire(lck) = trylock(lck)
+Locks.race_acquire(lck) = trylock(lck)
 
-function ConcurrentUtils.try_race_acquire(lck::Base.AbstractLock)
+function Locks.try_race_acquire(lck::Base.AbstractLock)
     if trylock(lck)
         return Ok(nothing)
     else
@@ -18,7 +18,7 @@ function ConcurrentUtils.try_race_acquire(lck::Base.AbstractLock)
     end
 end
 
-function ConcurrentUtils.acquire_then(f, lock; acquire_options...)
+function Locks.acquire_then(f, lock; acquire_options...)
     acquire(lock; acquire_options...)
     try
         return f()
@@ -27,17 +27,16 @@ function ConcurrentUtils.acquire_then(f, lock; acquire_options...)
     end
 end
 
-ConcurrentUtils.lock_supports_nspins(::Type{<:Base.AbstractLock}) = false
+Locks.lock_supports_nspins(::Type{<:Base.AbstractLock}) = false
 
-ConcurrentUtils.lock_supports_nspins(lock) =
-    ConcurrentUtils.lock_supports_nspins(typeof(lock))
+Locks.lock_supports_nspins(lock) = Locks.lock_supports_nspins(typeof(lock))
 
 need_lock_object() = error("need lock type or object")
-ConcurrentUtils.lock_supports_nspins(::Type{Union{}}) = need_lock_object()
-ConcurrentUtils.lock_supports_nspins(::Type) = need_lock_object()
+Locks.lock_supports_nspins(::Type{Union{}}) = need_lock_object()
+Locks.lock_supports_nspins(::Type) = need_lock_object()
 
 ###
-### Main ConcurrentUtils' lock interface
+### Main Locks' lock interface
 ###
 
 abstract type Lockable <: Base.AbstractLock end
@@ -54,7 +53,7 @@ function Base.lock(f, lck::Lockable; options...)
 end
 
 #=
-function ConcurrentUtils.try_race_acquire_then(f, lock::Lockable)
+function Locks.try_race_acquire_then(f, lock::Lockable)
     @? try_race_acquire(lock)
     try
         return f()
@@ -70,7 +69,7 @@ end
 
 abstract type AbstractReadWriteLock <: Lockable end
 
-function ConcurrentUtils.acquire_read_then(f, lock::AbstractReadWriteLock)
+function Locks.acquire_read_then(f, lock::AbstractReadWriteLock)
     acquire_read(lock)
     try
         return f()
@@ -87,13 +86,13 @@ struct ReadLockHandle{RWLock} <: Lockable
     rwlock::RWLock
 end
 
-ConcurrentUtils.try_race_acquire(lock::WriteLockHandle) = try_race_acquire(lock.rwlock)
+Locks.try_race_acquire(lock::WriteLockHandle) = try_race_acquire(lock.rwlock)
 Base.lock(lck::WriteLockHandle) = acquire(lck.rwlock)
 Base.unlock(lck::WriteLockHandle) = release(lck.rwlock)
 
-ConcurrentUtils.try_race_acquire(lock::ReadLockHandle) = try_race_acquire_read(lock.rwlock)
+Locks.try_race_acquire(lock::ReadLockHandle) = try_race_acquire_read(lock.rwlock)
 Base.lock(lck::ReadLockHandle) = acquire_read(lck.rwlock)
 Base.unlock(lck::ReadLockHandle) = release_read(lck.rwlock)
 
-ConcurrentUtils.read_write_lock(lock::AbstractReadWriteLock = ReadWriteLock()) =
+Locks.read_write_lock(lock::AbstractReadWriteLock = ReadWriteLock()) =
     (ReadLockHandle(lock), WriteLockHandle(lock))

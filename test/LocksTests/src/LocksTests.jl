@@ -1,4 +1,4 @@
-module ConcurrentUtilsTests
+module LocksTests
 
 include("utils.jl")
 
@@ -14,4 +14,4 @@ include("test_guards.jl")
 include("test_benchmarks.jl")
 include("test_doctest.jl")
 
-end  # module ConcurrentUtilsTests
+end  # module LocksTests

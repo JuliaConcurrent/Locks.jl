@@ -1,2 +1,2 @@
 using TestFunctionRunner
-TestFunctionRunner.@run(paths = ["../benchmark/ConcurrentUtilsBenchmarks"])
+TestFunctionRunner.@run(paths = ["../benchmark/LocksBenchmarks"])

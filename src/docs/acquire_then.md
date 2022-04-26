@@ -8,7 +8,7 @@ returned from `f`.  Keyword arguments are passed to [`acquire`](@ref).
 ## Examples
 
 ```julia
-julia> using ConcurrentUtils
+julia> using Locks
 
 julia> lock = ReentrantCLHLock();
 

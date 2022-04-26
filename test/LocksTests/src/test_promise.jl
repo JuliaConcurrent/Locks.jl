@@ -1,6 +1,6 @@
 module TestPromise
 
-using ConcurrentUtils
+using Locks
 using Random: randperm
 using Test
 

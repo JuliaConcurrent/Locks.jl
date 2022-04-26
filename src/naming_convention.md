@@ -1,7 +1,7 @@
 # Naming convention
 
 Following the [naming convention style guide of `Base`][base-naming-convention],
-ConcurrentUtils.jl uses underscore `_` to separate underlying concepts.
+Locks.jl uses underscore `_` to separate underlying concepts.
 
 [base-naming-convention]: https://docs.julialang.org/en/v1/manual/style-guide/#Use-naming-conventions-consistent-with-Julia-base/
 

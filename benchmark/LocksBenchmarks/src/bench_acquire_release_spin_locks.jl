@@ -1,7 +1,7 @@
 module BenchAcquireReleaseSpinLocks
 
 using BenchmarkTools
-using ConcurrentUtils
+using Locks
 using SyncBarriers
 
 function setup_repeat_acquire_release(

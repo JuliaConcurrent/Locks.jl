@@ -12,7 +12,7 @@ For an explanation on the concept, see:
 ## Examples
 
 ```julia
-julia> using ConcurrentUtils
+julia> using Locks
 
 julia> p = Promise{Int}();
 

@@ -1,6 +1,6 @@
 module Utils
 
-using ConcurrentUtils
+using Locks
 
 function poll_until(f)
     for _ in 1:1000

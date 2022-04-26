@@ -1,4 +1,4 @@
-baremodule ConcurrentUtils
+baremodule Locks
 
 export
     # Macros
@@ -111,11 +111,11 @@ import UnsafeAtomics: UnsafeAtomics, acq_rel
 using ExternalDocstrings: @define_docstrings
 using Try: Try, Ok, Err, @?
 
-import ..ConcurrentUtils: @once, @tasklet
-using ..ConcurrentUtils:
+import ..Locks: @once, @tasklet
+using ..Locks:
     AbstractGuard,
     AbstractReadWriteGuard,
-    ConcurrentUtils,
+    Locks,
     GenericGuard,
     GenericReadWriteGuard,
     NotAcquirableError,
@@ -172,4 +172,4 @@ const ReadWriteGuard = Internal.ReadWriteGuard
 
 Internal.@define_docstrings
 
-end  # baremodule ConcurrentUtils
+end  # baremodule Locks

@@ -1,7 +1,7 @@
 module BenchAcquireReleaseReadWriteLocks
 
 using BenchmarkTools
-using ConcurrentUtils
+using Locks
 using SyncBarriers
 
 include("raynal_read_write_lock.jl")

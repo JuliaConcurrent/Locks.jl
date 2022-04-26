@@ -1,6 +1,6 @@
 module TestReadWriteLock
 
-using ConcurrentUtils
+using Locks
 using Test
 
 using ..TestLocks: check_minimal_lock_interface

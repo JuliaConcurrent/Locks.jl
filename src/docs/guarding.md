@@ -8,7 +8,7 @@ See: [`Guard`](@ref), [`ReadWriteGuard`](@ref), [`guarding_read`](@ref)
 
 ## Examples
 ```julia
-julia> using ConcurrentUtils
+julia> using Locks
 
 julia> guard = Guard(Ref(0));
 

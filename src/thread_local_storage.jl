@@ -16,7 +16,7 @@ function ThreadLocalStorage(factory)
     )
 end
 
-function ConcurrentUtils.unsafe_takestorages!(tls::ThreadLocalStorage{T}) where {T}
+function Locks.unsafe_takestorages!(tls::ThreadLocalStorage{T}) where {T}
     storages = @atomic :monotonic tls.storages
     @atomic :monotonic tls.storages = T[]
     return storages

@@ -7,7 +7,7 @@ exclusive ("write") and shared ("read") access to `data`.
 
 ## Examples
 ```julia
-julia> using ConcurrentUtils
+julia> using Locks
 
 julia> guard = ReadWriteGuard(Ref(0));
 

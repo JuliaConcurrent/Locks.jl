@@ -10,7 +10,7 @@ or not by the return type.
 
 ## Examples
 ```julia
-julia> using ConcurrentUtils
+julia> using Locks
 
 julia> p = Promise{Int}();
 
