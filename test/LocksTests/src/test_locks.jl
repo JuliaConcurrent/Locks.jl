@@ -30,7 +30,13 @@ function check_minimal_lock_interface(lock)
 end
 
 function test_minimal_lock_interface()
-    @testset "$(nameof(T))" for T in [ReentrantLock, ReentrantCLHLock, NonreentrantCLHLock, ReentrantBacokffLock, NonreentrantBacokffLock]
+    @testset "$(nameof(T))" for T in [
+        ReentrantLock,
+        ReentrantCLHLock,
+        NonreentrantCLHLock,
+        ReentrantBacokffLock,
+        NonreentrantBacokffLock,
+    ]
         check_minimal_lock_interface(T())
     end
 end
