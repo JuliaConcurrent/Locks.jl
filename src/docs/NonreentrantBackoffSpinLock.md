@@ -22,7 +22,7 @@ edge.
 ## Supported operations
 
 * `NonreentrantBackoffSpinLock(; [mindelay], [maxdelay]) -> lock`: Create a `lock`.
-  `mindelay` (default: 1) specifies the number of [`spinloop`](@ref) called in the initial
+  `mindelay` (default: 1) specifies the number of `spinloop` called in the initial
   backoff.  `mindelay` (default: 1000) specifies the maximum backoff.
 * [`acquire(lock::NonreentrantBackoffSpinLock; [mindelay], [maxdelay])`](@ref acquire)
   (`lock`): Acquire the `lock`.  Keyword arguments `mindelay` and `maxdelay` can be passed
