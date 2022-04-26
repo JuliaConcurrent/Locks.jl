@@ -1,6 +1,6 @@
 module TestThreadLocalStorage
 
-using Locks
+using Locks.Internal: ThreadLocalStorage, unsafe_takestorages!
 using Test
 
 function test_serial()

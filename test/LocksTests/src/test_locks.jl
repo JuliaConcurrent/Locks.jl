@@ -1,9 +1,10 @@
 module TestLocks
 
 using Locks
+using Locks.Internal: ThreadLocalStorage, unsafe_takestorages!, spinfor
 using Test
 
-using ..Utils: poll_until, unfair_sleep
+using ..Utils: poll_until
 
 function check_minimal_lock_interface(lock)
     phase = Threads.Atomic{Int}(0)
@@ -42,7 +43,7 @@ function check_concurrent_mutex(lock, ntasks, ntries)
                 x = ref[]
 
                 # sleep about 3 μs
-                unfair_sleep(100)
+                spinfor(100)
 
                 ref[] = x + 1
             end

@@ -38,12 +38,12 @@ macro yield_unsafe(ex)
 end
 =#
 
-function Locks.spinloop()
+function spinloop()
     GC.safepoint()
     ccall(:jl_cpu_pause, Cvoid, ())
 end
 
-function Locks.spinfor(nspins)
+function spinfor(nspins)
     for _ in oneto(nspins)
         spinloop()
     end

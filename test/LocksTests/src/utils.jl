@@ -10,11 +10,4 @@ function poll_until(f)
     return false
 end
 
-# 1 tick is about 30 ns
-function unfair_sleep(nticks)
-    for _ in 1:nticks
-        spinloop()
-    end
-end
-
 end  # module

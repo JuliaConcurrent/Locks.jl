@@ -62,37 +62,3 @@ function Locks.try_race_acquire_then(f, lock::Lockable)
     end
 end
 =#
-
-###
-### Reader-writer lock interface
-###
-
-abstract type AbstractReadWriteLock <: Lockable end
-
-function Locks.acquire_read_then(f, lock::AbstractReadWriteLock)
-    acquire_read(lock)
-    try
-        return f()
-    finally
-        release_read(lock)
-    end
-end
-
-struct WriteLockHandle{RWLock} <: Lockable
-    rwlock::RWLock
-end
-
-struct ReadLockHandle{RWLock} <: Lockable
-    rwlock::RWLock
-end
-
-Locks.try_race_acquire(lock::WriteLockHandle) = try_race_acquire(lock.rwlock)
-Base.lock(lck::WriteLockHandle) = acquire(lck.rwlock)
-Base.unlock(lck::WriteLockHandle) = release(lck.rwlock)
-
-Locks.try_race_acquire(lock::ReadLockHandle) = try_race_acquire_read(lock.rwlock)
-Base.lock(lck::ReadLockHandle) = acquire_read(lck.rwlock)
-Base.unlock(lck::ReadLockHandle) = release_read(lck.rwlock)
-
-Locks.read_write_lock(lock::AbstractReadWriteLock = ReadWriteLock()) =
-    (ReadLockHandle(lock), WriteLockHandle(lock))
