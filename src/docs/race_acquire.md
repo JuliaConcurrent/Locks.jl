@@ -6,7 +6,7 @@ See also [`try_race_acquire`](@ref).
 
 ## Examples
 ```julia
-julia> using ConcurrentUtils
+julia> using Locks
 
 julia> lock = NonreentrantCLHLock();
 

@@ -43,7 +43,7 @@ isreentrant(::ReentrantBackoffSpinLock) = true
 
 Base.islocked(lock::BackoffSpinLock) = (@atomic :monotonic lock.state) !== LCK_AVAILABLE
 
-function ConcurrentUtils.try_race_acquire(
+function Locks.try_race_acquire(
     lock::BackoffSpinLock;
     mindelay = lock.mindelay,
     maxdelay = lock.maxdelay,

@@ -10,7 +10,7 @@ A `t = @tasklet code` supports: `t()`, `fetch(t)`, `wait(t)`, and [`try_race_fet
 ## Examples
 
 ```julia
-julia> using ConcurrentUtils
+julia> using Locks
 
 julia> t = @tasklet begin
            println("called")

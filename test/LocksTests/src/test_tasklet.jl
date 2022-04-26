@@ -1,6 +1,6 @@
 module TestTasklet
 
-using ConcurrentUtils
+using Locks
 using Test
 
 adder(x) = @tasklet Ref(x + 1)

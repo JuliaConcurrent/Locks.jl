@@ -1,6 +1,6 @@
 module TestThreadLocalStorage
 
-using ConcurrentUtils
+using Locks
 using Test
 
 function test_serial()

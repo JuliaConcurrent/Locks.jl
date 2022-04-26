@@ -1,6 +1,6 @@
 module TestLocks
 
-using ConcurrentUtils
+using Locks
 using Test
 
 using ..Utils: poll_until, unfair_sleep

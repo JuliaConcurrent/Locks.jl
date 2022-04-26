@@ -1,7 +1,7 @@
 module TestBenchmarks
 
 using Test
-using ConcurrentUtilsBenchmarks: clear, setup_smoke
+using LocksBenchmarks: clear, setup_smoke
 
 function test_smoke()
     try

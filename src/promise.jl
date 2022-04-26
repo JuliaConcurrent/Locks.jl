@@ -29,7 +29,7 @@ function Base.wait(promise::Promise)
     return
 end
 
-function ConcurrentUtils.try_race_fetch(promise::Promise{T}) where {T}
+function Locks.try_race_fetch(promise::Promise{T}) where {T}
     value = @atomic :monotonic promise.value
     if value isa NotSet
         return Err(NotSetError())
@@ -39,7 +39,7 @@ function ConcurrentUtils.try_race_fetch(promise::Promise{T}) where {T}
     end
 end
 
-function ConcurrentUtils.try_race_fetch_or!(
+function Locks.try_race_fetch_or!(
     thunk::F,
     promise::Promise{T},
 )::Union{Ok{T},Err{T}} where {F,T}
@@ -61,10 +61,10 @@ function ConcurrentUtils.try_race_fetch_or!(
     end
 end
 
-ConcurrentUtils.race_fetch_or!(f::F, promise::Promise) where {F} =
+Locks.race_fetch_or!(f::F, promise::Promise) where {F} =
     unwrap_or_else(identity, try_race_fetch_or!(f, promise))
 
-function ConcurrentUtils.try_race_put!(
+function Locks.try_race_put!(
     promise::Promise{T},
     value,
 )::Union{Ok{T},Err{OccupiedError{T}}} where {T}

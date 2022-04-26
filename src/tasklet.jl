@@ -23,7 +23,7 @@ end
 (tasklet::AbstractTasklet)() = race_fetch_or!(tasklet.thunk, tasklet.promise)
 Base.fetch(tasklet::AbstractTasklet) = fetch(tasklet.promise)
 Base.wait(tasklet::AbstractTasklet) = wait(tasklet.promise)
-ConcurrentUtils.try_race_fetch(tasklet::AbstractTasklet) = try_race_fetch(tasklet.promise)
+Locks.try_race_fetch(tasklet::AbstractTasklet) = try_race_fetch(tasklet.promise)
 
 macro once(ex)
     @gensym ONCETASK thunk

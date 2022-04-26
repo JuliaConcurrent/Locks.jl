@@ -1,7 +1,7 @@
 module BenchAcquireReleaseReadLocks
 
 using BenchmarkTools
-using ConcurrentUtils
+using Locks
 using SyncBarriers
 
 using ..BenchAcquireReleaseReadWriteLocks: raynal_read_write_lock, single_reentrantlock

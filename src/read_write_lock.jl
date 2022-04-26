@@ -23,7 +23,7 @@ function ReadWriteLock()
 end
 
 # Not very efficient but lock-free
-function ConcurrentUtils.try_race_acquire_read(
+function Locks.try_race_acquire_read(
     rwlock::ReadWriteLock;
     nspins = -∞,
     ntries = -∞,
@@ -50,7 +50,7 @@ function ConcurrentUtils.try_race_acquire_read(
     end
 end
 
-function ConcurrentUtils.acquire_read(rwlock::ReadWriteLock)
+function Locks.acquire_read(rwlock::ReadWriteLock)
 
     # Using hardware FAA
     ptr = Ptr{NReadersAndWritelock}(
@@ -76,7 +76,7 @@ function ConcurrentUtils.acquire_read(rwlock::ReadWriteLock)
     end
 end
 
-function ConcurrentUtils.release_read(rwlock::ReadWriteLock)
+function Locks.release_read(rwlock::ReadWriteLock)
 
     # Using hardware FAA
     ptr = Ptr{NReadersAndWritelock}(
@@ -96,7 +96,7 @@ function ConcurrentUtils.release_read(rwlock::ReadWriteLock)
     return
 end
 
-function ConcurrentUtils.try_race_acquire(rwlock::ReadWriteLock)
+function Locks.try_race_acquire(rwlock::ReadWriteLock)
     _, success = @atomicreplace(
         :acquire_release,
         :monotonic,

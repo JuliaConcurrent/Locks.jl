@@ -1,5 +1,5 @@
-name = "ConcurrentUtils"
-uuid = "3df5f688-6c4c-4767-8685-17f5ad261477"
+name = "Locks"
+uuid = "b2b8d39d-860c-47cc-b75e-a6e39294eaae"
 authors = ["Takafumi Arakaki <aka.tkf@gmail.com> and contributors"]
 version = "0.1.0-DEV"
 

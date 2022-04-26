@@ -7,7 +7,7 @@ reentrancy.
 ## Examples
 
 ```julia
-julia> using ConcurrentUtils
+julia> using Locks
 
 julia> lock = TaskObliviousLock();
 

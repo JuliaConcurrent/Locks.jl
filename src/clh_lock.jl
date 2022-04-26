@@ -65,7 +65,7 @@ function handle_reentrant_release(lock)
     return false
 end
 
-function ConcurrentUtils.try_race_acquire(lock::CLHLock; nspins = -∞, ntries = -∞)
+function Locks.try_race_acquire(lock::CLHLock; nspins = -∞, ntries = -∞)
     handle_reentrant_acquire(lock) && return Ok(nothing)
     pred = @atomic :monotonic lock.tail
     local ns::Int = 0
@@ -97,7 +97,7 @@ function ConcurrentUtils.try_race_acquire(lock::CLHLock; nspins = -∞, ntries =
     end
 end
 
-ConcurrentUtils.lock_supports_nspins(::Type{<:CLHLock}) = true
+Locks.lock_supports_nspins(::Type{<:CLHLock}) = true
 
 function Base.lock(lock::CLHLock; nspins = nothing)
     handle_reentrant_acquire(lock) && return

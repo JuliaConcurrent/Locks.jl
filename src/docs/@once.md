@@ -13,7 +13,7 @@ code` in the same Julia task have happened-before edge from the events in `code`
 # Examples
 
 ```julia
-julia> using ConcurrentUtils
+julia> using Locks
 
 julia> f() = @once Ref(123);
 

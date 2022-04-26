@@ -1,10 +1,10 @@
-# ConcurrentUtils.jl
+# Locks.jl
 
 ## Promise
 
 ```@eval
 using DocumentationOverview
-using ConcurrentUtils
+using Locks
 DocumentationOverview.table_md(
     :[
         Promise,
@@ -13,7 +13,7 @@ DocumentationOverview.table_md(
         race_fetch_or!,
         try_race_put!,
     ],
-    namespace = ConcurrentUtils,
+    namespace = Locks,
     signature = :name,
 )
 ```
@@ -30,13 +30,13 @@ try_race_put!
 
 ```@eval
 using DocumentationOverview
-using ConcurrentUtils
+using Locks
 DocumentationOverview.table_md(
     :[
         var"@tasklet",
         var"@once",
     ],
-    namespace = ConcurrentUtils,
+    namespace = Locks,
     signature = :name,
 )
 ```
@@ -50,7 +50,7 @@ DocumentationOverview.table_md(
 
 ```@eval
 using DocumentationOverview
-using ConcurrentUtils
+using Locks
 DocumentationOverview.table_md(
     :[
         ReentrantCLHLock,
@@ -65,7 +65,7 @@ DocumentationOverview.table_md(
         race_acquire,
         acquire_then,
     ],
-    namespace = ConcurrentUtils,
+    namespace = Locks,
     signature = :name,
 )
 ```
@@ -88,7 +88,7 @@ acquire_then
 
 ```@eval
 using DocumentationOverview
-using ConcurrentUtils
+using Locks
 DocumentationOverview.table_md(
     :[
         Guard,
@@ -96,7 +96,7 @@ DocumentationOverview.table_md(
         guarding,
         guarding_read,
     ],
-    namespace = ConcurrentUtils,
+    namespace = Locks,
     signature = :name,
 )
 ```
@@ -112,13 +112,13 @@ guarding_read
 
 ```@eval
 using DocumentationOverview
-using ConcurrentUtils
+using Locks
 DocumentationOverview.table_md(
     :[
         ThreadLocalStorage,
         spinloop,
     ],
-    namespace = ConcurrentUtils,
+    namespace = Locks,
     signature = :name,
 )
 ```

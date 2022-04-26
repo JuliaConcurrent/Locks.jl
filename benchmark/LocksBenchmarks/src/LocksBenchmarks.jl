@@ -1,4 +1,4 @@
-module ConcurrentUtilsBenchmarks
+module LocksBenchmarks
 
 using BenchmarkTools: Benchmark, BenchmarkGroup
 
@@ -54,4 +54,4 @@ function clear()
     end
 end
 
-end  # module ConcurrentUtilsBenchmarks
+end  # module LocksBenchmarks

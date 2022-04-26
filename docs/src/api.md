@@ -2,9 +2,9 @@
 
 ```@eval
 using DocumentationOverview
-using ConcurrentUtils
+using Locks
 DocumentationOverview.table_md(
-    ConcurrentUtils;
+    Locks;
     signature = :strip_namespace,
     include = api -> api.hasdoc && !(api.value isa Module),
 )

@@ -7,7 +7,7 @@ See the documentation of `typeof(lock)` for possible error types.
 
 ## Examples
 ```julia
-julia> using ConcurrentUtils
+julia> using Locks
 
 julia> lock = NonreentrantCLHLock();
 

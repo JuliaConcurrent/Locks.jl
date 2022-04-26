@@ -25,7 +25,7 @@ not given, `T = typeof(factory())` is used (i.e., `factory` is assumed to be typ
 
 ## Examples
 ```julia
-julia> using ConcurrentUtils
+julia> using Locks
 
 julia> tls = ThreadLocalStorage(Ref{Int});
 

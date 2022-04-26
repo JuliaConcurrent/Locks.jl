@@ -6,7 +6,7 @@ Guard mutable `data`.  Use [`guarding`](@ref) to obtain exclusive access to `dat
 
 ## Examples
 ```julia
-julia> using ConcurrentUtils
+julia> using Locks
 
 julia> guard = Guard(Ref(0));
 

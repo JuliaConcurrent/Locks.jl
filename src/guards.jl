@@ -1,36 +1,36 @@
 const Guard = GenericGuard{ReentrantLock}
 const ReadWriteGuard = GenericReadWriteGuard{ReadWriteLock}
 
-ConcurrentUtils.guardwith(data, lock) = GenericGuard(lock, data)
-ConcurrentUtils.guardwith(data, lock::AbstractReadWriteLock) =
+Locks.guardwith(data, lock) = GenericGuard(lock, data)
+Locks.guardwith(data, lock::AbstractReadWriteLock) =
     GenericReadWriteGuard(lock, data)
 
-function ConcurrentUtils.GenericGuard{Lock}(data) where {Lock}
+function Locks.GenericGuard{Lock}(data) where {Lock}
     lock = Lock()
     return GenericGuard(lock, data)
 end
 
-function ConcurrentUtils.GenericReadWriteGuard{Lock}(data) where {Lock}
+function Locks.GenericReadWriteGuard{Lock}(data) where {Lock}
     lock = Lock()
     return GenericReadWriteGuard(lock, data)
 end
 
-function ConcurrentUtils.guarding(f!::F, g::GenericGuard) where {F}
+function Locks.guarding(f!::F, g::GenericGuard) where {F}
     data = g.data
     criticalsection() = f!(data)
     lock(criticalsection, g.lock)
 end
 
-ConcurrentUtils.guarding_read(f::F, g::GenericGuard) where {F} =
-    ConcurrentUtils.guarding(f, g)
+Locks.guarding_read(f::F, g::GenericGuard) where {F} =
+    Locks.guarding(f, g)
 
-function ConcurrentUtils.guarding(f!::F, g::GenericReadWriteGuard) where {F}
+function Locks.guarding(f!::F, g::GenericReadWriteGuard) where {F}
     data = g.data
     criticalsection() = f!(data)
     lock(criticalsection, g.lock)
 end
 
-function ConcurrentUtils.guarding_read(f::F, g::GenericReadWriteGuard) where {F}
+function Locks.guarding_read(f::F, g::GenericReadWriteGuard) where {F}
     data = g.data
     criticalsection() = f(data)
     acquire_read_then(criticalsection, g.lock)
@@ -47,18 +47,18 @@ struct WriteGuard{Guard}
     guard::Guard
 end
 
-ConcurrentUtils.guarding(f::F, readguard::ReadGuard) where {F} =
-    ConcurrentUtils.guarding_read(f, readguard.guard)
+Locks.guarding(f::F, readguard::ReadGuard) where {F} =
+    Locks.guarding_read(f, readguard.guard)
 
-ConcurrentUtils.guarding(f::F, writeguard::WriteGuard) where {F} =
-    ConcurrentUtils.guarding(f, writeguard.guard)
+Locks.guarding(f::F, writeguard::WriteGuard) where {F} =
+    Locks.guarding(f, writeguard.guard)
 
-function ConcurrentUtils.read_write_guard(guard::AbstractReadWriteGuard)
+function Locks.read_write_guard(guard::AbstractReadWriteGuard)
     readguard = ReadGuard(guard)
     writeguard = WriteGuard(guard)
     return (readguard, writeguard)
 end
 
-ConcurrentUtils.read_write_guard(lock::AbstractReadWriteLock, data) =
-    ConcurrentUtils.read_write_guard(GenericReadWriteGuard(lock, data))
+Locks.read_write_guard(lock::AbstractReadWriteLock, data) =
+    Locks.read_write_guard(GenericReadWriteGuard(lock, data))
 =#
